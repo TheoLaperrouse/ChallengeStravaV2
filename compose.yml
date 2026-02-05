@@ -1,0 +1,47 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: strava
+      POSTGRES_PASSWORD: strava
+      POSTGRES_DB: challenge_strava
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U strava -d challenge_strava"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  back:
+    build:
+      context: .
+      dockerfile: packages/back/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgres://strava:strava@postgres:5432/challenge_strava
+      STRAVA_CLIENT_ID: ${STRAVA_CLIENT_ID}
+      STRAVA_CLIENT_SECRET: ${STRAVA_CLIENT_SECRET}
+      STRAVA_REDIRECT_URI: ${STRAVA_REDIRECT_URI:-http://localhost:5173/api/auth/callback}
+      SESSION_SECRET: ${SESSION_SECRET:-change-me-in-production-32chars!}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:5173}
+      PORT: "3000"
+      NODE_ENV: production
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  front:
+    build:
+      context: .
+      dockerfile: packages/front/Dockerfile
+    ports:
+      - "5173:80"
+    depends_on:
+      - back
+
+volumes:
+  pgdata:
