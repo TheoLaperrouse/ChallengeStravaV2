@@ -14,7 +14,10 @@
 		"db:migrate": "pnpm --filter back db:migrate"
 	},
 	"pnpm": {
-		"onlyBuiltDependencies": ["@biomejs/biome", "esbuild"]
+		"onlyBuiltDependencies": [
+			"@biomejs/biome",
+			"esbuild"
+		]
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
