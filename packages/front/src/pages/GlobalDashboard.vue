@@ -63,22 +63,22 @@ watch(selectedType, () => loadData(), { immediate: true });
 			<ActivityTypeFilter v-model="selectedType" />
 		</div>
 
-		<div v-if="globalStats" class="grid grid-cols-2 gap-4 lg:grid-cols-4">
-			<div class="rounded-lg border border-dark-border bg-dark-card p-6">
+		<div v-if="globalStats" class="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+			<div class="rounded-lg border border-dark-border bg-dark-card p-4 sm:p-6">
 				<p class="text-sm text-concrete">Participants</p>
-				<p class="mt-1 text-2xl font-bold text-punch">{{ globalStats.totalParticipants }}</p>
+				<p class="mt-1 text-xl font-bold text-punch sm:text-2xl">{{ globalStats.totalParticipants }}</p>
 			</div>
-			<div class="rounded-lg border border-dark-border bg-dark-card p-6">
+			<div class="rounded-lg border border-dark-border bg-dark-card p-4 sm:p-6">
 				<p class="text-sm text-concrete">Activités totales</p>
-				<p class="mt-1 text-2xl font-bold text-punch">{{ globalStats.totalActivities }}</p>
+				<p class="mt-1 text-xl font-bold text-punch sm:text-2xl">{{ globalStats.totalActivities }}</p>
 			</div>
-			<div class="rounded-lg border border-dark-border bg-dark-card p-6">
+			<div class="rounded-lg border border-dark-border bg-dark-card p-4 sm:p-6">
 				<p class="text-sm text-concrete">Distance totale</p>
-				<p class="mt-1 text-2xl font-bold text-punch">{{ formatDistance(globalStats.totalDistance) }}</p>
+				<p class="mt-1 text-xl font-bold text-punch sm:text-2xl">{{ formatDistance(globalStats.totalDistance) }}</p>
 			</div>
-			<div class="rounded-lg border border-dark-border bg-dark-card p-6">
+			<div class="rounded-lg border border-dark-border bg-dark-card p-4 sm:p-6">
 				<p class="text-sm text-concrete">Temps total</p>
-				<p class="mt-1 text-2xl font-bold text-punch">{{ formatDuration(globalStats.totalMovingTime) }}</p>
+				<p class="mt-1 text-xl font-bold text-punch sm:text-2xl">{{ formatDuration(globalStats.totalMovingTime) }}</p>
 			</div>
 		</div>
 

@@ -38,36 +38,36 @@ function formatSpeed(mps: number | null): string {
 		<table class="min-w-full divide-y divide-dark-border">
 			<thead class="bg-dark-elevated">
 				<tr>
-					<th class="px-4 py-3 text-left text-xs font-medium uppercase text-concrete">Date</th>
-					<th class="px-4 py-3 text-left text-xs font-medium uppercase text-concrete">Nom</th>
-					<th class="px-4 py-3 text-left text-xs font-medium uppercase text-concrete">Type</th>
-					<th class="px-4 py-3 text-right text-xs font-medium uppercase text-concrete">Distance</th>
-					<th class="px-4 py-3 text-right text-xs font-medium uppercase text-concrete">Durée</th>
-					<th class="px-4 py-3 text-right text-xs font-medium uppercase text-concrete">D+</th>
-					<th class="px-4 py-3 text-right text-xs font-medium uppercase text-concrete">Vitesse moy.</th>
+					<th class="px-2 py-3 text-left text-xs font-medium uppercase text-concrete sm:px-4">Date</th>
+					<th class="px-2 py-3 text-left text-xs font-medium uppercase text-concrete sm:px-4">Nom</th>
+					<th class="hidden px-2 py-3 text-left text-xs font-medium uppercase text-concrete sm:px-4 md:table-cell">Type</th>
+					<th class="px-2 py-3 text-right text-xs font-medium uppercase text-concrete sm:px-4">Distance</th>
+					<th class="px-2 py-3 text-right text-xs font-medium uppercase text-concrete sm:px-4">Durée</th>
+					<th class="hidden px-2 py-3 text-right text-xs font-medium uppercase text-concrete sm:px-4 lg:table-cell">D+</th>
+					<th class="hidden px-2 py-3 text-right text-xs font-medium uppercase text-concrete sm:px-4 lg:table-cell">Vitesse moy.</th>
 				</tr>
 			</thead>
 			<tbody class="divide-y divide-dark-border">
 				<tr v-for="activity in activities" :key="activity.id" class="hover:bg-dark-elevated/50">
-					<td class="whitespace-nowrap px-4 py-3 text-sm text-concrete">
+					<td class="whitespace-nowrap px-2 py-3 text-sm text-concrete sm:px-4">
 						{{ formatDate(activity.startDate) }}
 					</td>
-					<td class="px-4 py-3 text-sm font-medium text-offwhite">
+					<td class="px-2 py-3 text-sm font-medium text-offwhite sm:px-4">
 						{{ activity.name }}
 					</td>
-					<td class="px-4 py-3 text-sm text-concrete">
+					<td class="hidden px-2 py-3 text-sm text-concrete sm:px-4 md:table-cell">
 						{{ activity.sportType ?? activity.type }}
 					</td>
-					<td class="whitespace-nowrap px-4 py-3 text-right text-sm font-semibold text-punch">
+					<td class="whitespace-nowrap px-2 py-3 text-right text-sm font-semibold text-punch sm:px-4">
 						{{ formatDistance(activity.distance) }}
 					</td>
-					<td class="whitespace-nowrap px-4 py-3 text-right text-sm text-offwhite">
+					<td class="whitespace-nowrap px-2 py-3 text-right text-sm text-offwhite sm:px-4">
 						{{ formatDuration(activity.movingTime) }}
 					</td>
-					<td class="whitespace-nowrap px-4 py-3 text-right text-sm text-offwhite">
+					<td class="hidden whitespace-nowrap px-2 py-3 text-right text-sm text-offwhite sm:px-4 lg:table-cell">
 						{{ activity.totalElevationGain ? `${Math.round(activity.totalElevationGain)} m` : '-' }}
 					</td>
-					<td class="whitespace-nowrap px-4 py-3 text-right text-sm text-offwhite">
+					<td class="hidden whitespace-nowrap px-2 py-3 text-right text-sm text-offwhite sm:px-4 lg:table-cell">
 						{{ formatSpeed(activity.averageSpeed) }}
 					</td>
 				</tr>

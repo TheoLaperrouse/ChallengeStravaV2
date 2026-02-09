@@ -152,7 +152,7 @@ watch(selectedType, () => loadData());
 <template>
 	<div class="space-y-4">
 		<div class="flex flex-wrap items-center justify-between gap-4">
-			<h1 class="text-2xl font-bold text-ivory">Carte des Activites</h1>
+			<h1 class="text-2xl font-bold text-ivory">Carte des Activités</h1>
 			<ActivityTypeFilter v-model="selectedType" />
 		</div>
 		<div class="relative overflow-hidden rounded-lg border border-dark-border">
@@ -162,10 +162,10 @@ watch(selectedType, () => loadData());
 			>
 				<p class="text-sm text-ash">Chargement...</p>
 			</div>
-			<div ref="mapContainer" class="h-[calc(100vh-12rem)] w-full" />
+			<div ref="mapContainer" class="h-[60vh] w-full sm:h-[calc(100vh-12rem)]" />
 		</div>
 		<p class="text-sm text-ash">
-			{{ mapActivities.length }} activites affichees
+			{{ mapActivities.length }} activités affichées
 		</p>
 	</div>
 </template>

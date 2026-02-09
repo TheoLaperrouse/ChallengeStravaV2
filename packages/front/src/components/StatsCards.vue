@@ -32,14 +32,14 @@ const cards = [
 </script>
 
 <template>
-	<div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
+	<div class="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
 		<div
 			v-for="card in cards"
 			:key="card.label"
-			class="rounded-lg border border-dark-border bg-dark-card p-6"
+			class="rounded-lg border border-dark-border bg-dark-card p-4 sm:p-6"
 		>
 			<p class="text-sm text-concrete">{{ card.label }}</p>
-			<p class="mt-1 text-2xl font-bold text-punch">{{ card.getValue() }}</p>
+			<p class="mt-1 text-xl font-bold text-punch sm:text-2xl">{{ card.getValue() }}</p>
 		</div>
 	</div>
 </template>

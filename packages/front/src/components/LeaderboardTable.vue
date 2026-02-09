@@ -24,17 +24,17 @@ function formatDuration(seconds: string | null): string {
 		<table class="min-w-full divide-y divide-dark-border">
 			<thead class="bg-dark-elevated">
 				<tr>
-					<th class="px-4 py-3 text-left text-xs font-medium uppercase text-concrete">#</th>
-					<th class="px-4 py-3 text-left text-xs font-medium uppercase text-concrete">Athlète</th>
-					<th class="px-4 py-3 text-right text-xs font-medium uppercase text-concrete">Activités</th>
-					<th class="px-4 py-3 text-right text-xs font-medium uppercase text-concrete">Distance</th>
-					<th class="px-4 py-3 text-right text-xs font-medium uppercase text-concrete">Temps</th>
-					<th class="px-4 py-3 text-right text-xs font-medium uppercase text-concrete">D+</th>
+					<th class="px-2 py-3 text-left text-xs font-medium uppercase text-concrete sm:px-4">#</th>
+					<th class="px-2 py-3 text-left text-xs font-medium uppercase text-concrete sm:px-4">Athlète</th>
+					<th class="hidden px-2 py-3 text-right text-xs font-medium uppercase text-concrete sm:px-4 md:table-cell">Activités</th>
+					<th class="px-2 py-3 text-right text-xs font-medium uppercase text-concrete sm:px-4">Distance</th>
+					<th class="hidden px-2 py-3 text-right text-xs font-medium uppercase text-concrete sm:px-4 lg:table-cell">Temps</th>
+					<th class="hidden px-2 py-3 text-right text-xs font-medium uppercase text-concrete sm:px-4 lg:table-cell">D+</th>
 				</tr>
 			</thead>
 			<tbody class="divide-y divide-dark-border">
 				<tr v-for="(entry, index) in leaderboard" :key="entry.userId" class="hover:bg-dark-elevated/50">
-					<td class="px-4 py-3 text-sm font-bold">
+					<td class="px-2 py-3 text-sm font-bold sm:px-4">
 						<span
 							:class="{
 								'text-neon': index === 0,
@@ -46,7 +46,7 @@ function formatDuration(seconds: string | null): string {
 							{{ index + 1 }}
 						</span>
 					</td>
-					<td class="px-4 py-3">
+					<td class="px-2 py-3 sm:px-4">
 						<div class="flex items-center gap-3">
 							<img
 								v-if="entry.avatarUrl"
@@ -65,16 +65,16 @@ function formatDuration(seconds: string | null): string {
 							</span>
 						</div>
 					</td>
-					<td class="px-4 py-3 text-right text-sm text-concrete">
+					<td class="hidden px-2 py-3 text-right text-sm text-concrete sm:px-4 md:table-cell">
 						{{ entry.totalActivities }}
 					</td>
-					<td class="px-4 py-3 text-right text-sm font-semibold text-punch">
+					<td class="px-2 py-3 text-right text-sm font-semibold text-punch sm:px-4">
 						{{ formatDistance(entry.totalDistance) }}
 					</td>
-					<td class="px-4 py-3 text-right text-sm text-offwhite">
+					<td class="hidden px-2 py-3 text-right text-sm text-offwhite sm:px-4 lg:table-cell">
 						{{ formatDuration(entry.totalMovingTime) }}
 					</td>
-					<td class="px-4 py-3 text-right text-sm text-offwhite">
+					<td class="hidden px-2 py-3 text-right text-sm text-offwhite sm:px-4 lg:table-cell">
 						{{ entry.totalElevation ? `${Math.round(Number(entry.totalElevation))} m` : '0 m' }}
 					</td>
 				</tr>

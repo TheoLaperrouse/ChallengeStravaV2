@@ -73,8 +73,8 @@ const chartOptions = {
 </script>
 
 <template>
-	<div class="rounded-lg border border-dark-border bg-dark-card p-6">
-		<div class="h-64">
+	<div class="rounded-lg border border-dark-border bg-dark-card p-4 sm:p-6">
+		<div class="h-48 sm:h-64">
 			<Bar v-if="activities.length > 0" :data="chartData" :options="chartOptions" />
 			<p v-else class="flex h-full items-center justify-center text-sm text-concrete">
 				Aucune donnée

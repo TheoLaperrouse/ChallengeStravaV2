@@ -88,7 +88,7 @@ const chartOptions = {
 	maintainAspectRatio: false,
 	plugins: {
 		legend: { display: true, position: "bottom" as const, labels: { color: OFFWHITE } },
-		title: { display: true, text: "Distance cumulee par athlete", color: OFFWHITE },
+		title: { display: true, text: "Distance cumulée par athlète", color: OFFWHITE },
 	},
 	scales: {
 		y: {
@@ -115,11 +115,11 @@ const chartOptions = {
 </script>
 
 <template>
-	<div class="rounded-lg border border-dark-border bg-dark-card p-6">
-		<div class="h-80">
+	<div class="rounded-lg border border-dark-border bg-dark-card p-4 sm:p-6">
+		<div class="h-56 sm:h-80">
 			<Line v-if="data.length > 0" :data="chartData" :options="chartOptions" />
 			<p v-else class="flex h-full items-center justify-center text-sm text-concrete">
-				Aucune donnee
+				Aucune donnée
 			</p>
 		</div>
 	</div>

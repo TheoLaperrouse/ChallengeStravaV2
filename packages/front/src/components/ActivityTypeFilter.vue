@@ -17,13 +17,13 @@ const types: { value: ActivityType; label: string }[] = [
 </script>
 
 <template>
-	<div class="flex gap-1 rounded-lg bg-dark-elevated p-1">
+	<div class="flex w-full gap-1 rounded-lg bg-dark-elevated p-1 sm:w-auto">
 		<button
 			v-for="type in types"
 			:key="type.value"
 			@click="emit('update:modelValue', type.value)"
 			:class="[
-				'rounded-md px-4 py-2 text-sm font-medium transition-colors',
+				'flex-1 rounded-md px-2 py-2 text-xs font-medium transition-colors sm:flex-initial sm:px-4 sm:text-sm',
 				modelValue === type.value
 					? 'bg-punch text-dark shadow'
 					: 'text-concrete hover:text-offwhite',
