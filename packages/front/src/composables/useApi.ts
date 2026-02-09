@@ -24,5 +24,16 @@ export function useApi() {
 		return response.json();
 	}
 
-	return { get, post };
+	async function del<T>(path: string): Promise<T> {
+		const response = await fetch(`${API_BASE}${path}`, {
+			method: "DELETE",
+			credentials: "include",
+		});
+		if (!response.ok) {
+			throw new Error(`API error: ${response.status}`);
+		}
+		return response.json();
+	}
+
+	return { get, post, del };
 }

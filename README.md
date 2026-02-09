@@ -1,4 +1,4 @@
-# Challenge Strava V2
+# SportChallenge
 
 Application web pour organiser des challenges sportifs entre amis en se basant sur les donnees Strava. Synchronisez vos activites, suivez vos statistiques et comparez-vous dans un classement general.
 
@@ -23,7 +23,7 @@ Application web pour organiser des challenges sportifs entre amis en se basant s
 ## Structure du projet
 
 ```
-ChallengeStravaV2/
+SportChallenge/
 ├── packages/
 │   ├── back/          # API Hono + Drizzle
 │   │   └── src/
@@ -53,7 +53,7 @@ ChallengeStravaV2/
 
 ```bash
 # Cloner le depot
-git clone <repo-url> && cd ChallengeStravaV2
+git clone <repo-url> && cd SportChallenge
 
 # Installer les dependances
 pnpm install
@@ -65,7 +65,7 @@ cp .env.example .env
 Renseignez dans `.env` :
 
 ```
-DATABASE_URL=postgres://strava:strava@localhost:5432/challenge_strava
+DATABASE_URL=postgres://sportchallenge:sportchallenge@localhost:5432/sport_challenge
 STRAVA_CLIENT_ID=votre_client_id
 STRAVA_CLIENT_SECRET=votre_client_secret
 STRAVA_REDIRECT_URI=http://localhost:3000/api/auth/callback

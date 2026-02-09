@@ -73,7 +73,7 @@ function formatSpeed(mps: number | null): string {
 				</tr>
 				<tr v-if="activities.length === 0">
 					<td colspan="7" class="px-4 py-8 text-center text-sm text-concrete">
-						Aucune activité. Cliquez sur "Synchroniser" pour importer vos activités Strava.
+						Aucune activité pour le moment. Vos activités sont synchronisées automatiquement.
 					</td>
 				</tr>
 			</tbody>

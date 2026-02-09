@@ -6,7 +6,7 @@ const { login } = useAuth();
 const features = [
 	{
 		icon: "sync",
-		title: "Synchronisation Strava",
+		title: "Synchronisation automatique",
 		description:
 			"Importez automatiquement toutes vos activités depuis votre compte Strava en un clic.",
 	},
@@ -42,16 +42,17 @@ const features = [
 				"
 			/>
 			<div class="relative mx-auto max-w-4xl text-center">
-				<div class="mb-6 inline-flex items-center gap-2 rounded-full bg-punch/20 px-4 py-1.5 text-sm font-medium text-punch backdrop-blur-sm">
-					<svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-						<path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169" />
-					</svg>
-					Powered by Strava
+				<div class="mb-6">
+					<img
+						src="/powered_by_strava_orange.svg"
+						alt="Powered by Strava"
+						class="mx-auto h-8"
+					/>
 				</div>
 
 				<h1 class="text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl">
-					<span class="text-offwhite">Challenge</span>
-					<span class="text-punch"> Strava</span>
+					<span class="text-offwhite">Le</span>
+					<span class="text-punch"> Challenge</span>
 				</h1>
 				<p class="mx-auto mt-6 max-w-2xl text-xl leading-relaxed text-concrete">
 					Relevez le challenge entre amis ! Synchronisez vos activit&eacute;s sportives, suivez
@@ -61,12 +62,13 @@ const features = [
 				<div class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
 					<button
 						@click="login"
-						class="inline-flex items-center gap-3 rounded-xl bg-neon px-8 py-4 text-lg font-bold text-dark shadow-xl transition-all hover:scale-105 hover:bg-neon-light hover:shadow-2xl hover:shadow-neon/20 active:scale-100"
+						class="transition-all hover:scale-105 active:scale-100"
 					>
-						<svg class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
-							<path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169" />
-						</svg>
-						Se connecter avec Strava
+						<img
+							src="/btn_strava_connectwith_orange.svg"
+							alt="Connect with Strava"
+							class="h-12"
+						/>
 					</button>
 					<a
 						href="#features"
@@ -174,17 +176,24 @@ const features = [
 					Rejoignez le challenge maintenant
 				</h2>
 				<p class="mt-4 text-lg text-concrete">
-					C'est gratuit, rapide, et il suffit d'un compte Strava.
+					C'est gratuit, rapide, et compatible avec Strava.
 				</p>
 				<button
 					@click="login"
-					class="mt-8 inline-flex items-center gap-3 rounded-xl bg-neon px-8 py-4 text-lg font-bold text-dark shadow-lg transition-all hover:scale-105 hover:bg-neon-light hover:shadow-xl hover:shadow-neon/20 active:scale-100"
+					class="mt-8 transition-all hover:scale-105 active:scale-100"
 				>
-					<svg class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
-						<path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169" />
-					</svg>
-					Se connecter avec Strava
+					<img
+						src="/btn_strava_connectwith_orange.svg"
+						alt="Connect with Strava"
+						class="h-12"
+					/>
 				</button>
+				<router-link
+					to="/privacy"
+					class="mt-4 inline-block text-sm text-concrete hover:text-offwhite"
+				>
+					Politique de confidentialit&eacute;
+				</router-link>
 			</div>
 		</section>
 	</div>

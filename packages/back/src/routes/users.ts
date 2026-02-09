@@ -1,4 +1,8 @@
+import { eq } from "drizzle-orm";
 import { Hono } from "hono";
+import { deleteCookie } from "hono/cookie";
+import { db } from "../db/connection.js";
+import { users } from "../db/schema.js";
 import { type AuthEnv, authMiddleware } from "../middleware/auth.js";
 
 export const usersRoutes = new Hono<AuthEnv>();
@@ -15,4 +19,11 @@ usersRoutes.get("/profile", (c) => {
 		lastname: user.lastname,
 		avatarUrl: user.avatarUrl,
 	});
+});
+
+usersRoutes.delete("/", async (c) => {
+	const user = c.get("user");
+	await db.delete(users).where(eq(users.id, user.id));
+	deleteCookie(c, "session_id", { path: "/" });
+	return c.json({ success: true });
 });

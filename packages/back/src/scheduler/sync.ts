@@ -1,4 +1,4 @@
-import { eq } from "drizzle-orm";
+import { and, eq, notInArray } from "drizzle-orm";
 import cron from "node-cron";
 import { db } from "../db/connection.js";
 import { activities, users } from "../db/schema.js";
@@ -45,6 +45,7 @@ async function syncUserActivities(user: UserForSync): Promise<number> {
 	let page = 1;
 	let totalSynced = 0;
 	let hasMore = true;
+	const syncedStravaIds: number[] = [];
 
 	while (hasMore) {
 		const stravaActivities = await fetchActivities(tokens.accessToken, page, 100);
@@ -55,6 +56,7 @@ async function syncUserActivities(user: UserForSync): Promise<number> {
 		}
 
 		for (const activity of stravaActivities) {
+			syncedStravaIds.push(activity.id);
 			await db
 				.insert(activities)
 				.values({
@@ -102,6 +104,19 @@ async function syncUserActivities(user: UserForSync): Promise<number> {
 			hasMore = false;
 		}
 		page++;
+	}
+
+	// Clean up activities deleted on Strava
+	if (syncedStravaIds.length > 0) {
+		const deleted = await db
+			.delete(activities)
+			.where(and(eq(activities.userId, user.id), notInArray(activities.stravaId, syncedStravaIds)))
+			.returning({ id: activities.id });
+		if (deleted.length > 0) {
+			console.log(
+				`[Scheduler] Cleaned up ${deleted.length} deleted activities for user ${user.id} (${user.username})`,
+			);
+		}
 	}
 
 	return totalSynced;

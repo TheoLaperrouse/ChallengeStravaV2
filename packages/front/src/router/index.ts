@@ -4,10 +4,12 @@ import GlobalDashboard from "../pages/GlobalDashboard.vue";
 import LoginPage from "../pages/LoginPage.vue";
 import MapPage from "../pages/MapPage.vue";
 import PersonalDashboard from "../pages/PersonalDashboard.vue";
+import PrivacyPage from "../pages/PrivacyPage.vue";
 
 const routes = [
 	{ path: "/", redirect: "/login" },
 	{ path: "/login", component: LoginPage, meta: { guest: true } },
+	{ path: "/privacy", component: PrivacyPage, meta: { guest: true } },
 	{ path: "/dashboard", component: PersonalDashboard, meta: { requiresAuth: true } },
 	{ path: "/global", component: GlobalDashboard, meta: { requiresAuth: true } },
 	{ path: "/map", component: MapPage, meta: { requiresAuth: true, fullWidth: true } },

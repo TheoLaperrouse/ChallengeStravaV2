@@ -5,7 +5,7 @@ import { useApi } from "./useApi.js";
 const user = ref<User | null>(null);
 
 export function useAuth() {
-	const { get, post } = useApi();
+	const { get, post, del } = useApi();
 
 	async function fetchUser() {
 		try {
@@ -25,5 +25,11 @@ export function useAuth() {
 		window.location.href = "/login";
 	}
 
-	return { user, fetchUser, login, logout };
+	async function deleteAccount() {
+		await del("/users");
+		user.value = null;
+		window.location.href = "/login";
+	}
+
+	return { user, fetchUser, login, logout, deleteAccount };
 }

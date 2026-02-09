@@ -2,15 +2,15 @@ services:
   postgres:
     image: postgres:16-alpine
     environment:
-      POSTGRES_USER: strava
-      POSTGRES_PASSWORD: strava
-      POSTGRES_DB: challenge_strava
+      POSTGRES_USER: sportchallenge
+      POSTGRES_PASSWORD: sportchallenge
+      POSTGRES_DB: sport_challenge
     ports:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U strava -d challenge_strava"]
+      test: ["CMD-SHELL", "pg_isready -U sportchallenge -d sport_challenge"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -22,7 +22,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      DATABASE_URL: postgres://strava:strava@postgres:5432/challenge_strava
+      DATABASE_URL: postgres://sportchallenge:sportchallenge@postgres:5432/sport_challenge
       STRAVA_CLIENT_ID: ${STRAVA_CLIENT_ID}
       STRAVA_CLIENT_SECRET: ${STRAVA_CLIENT_SECRET}
       STRAVA_REDIRECT_URI: ${STRAVA_REDIRECT_URI:-http://localhost:5173/api/auth/callback}

@@ -2,8 +2,18 @@
 import { ref } from "vue";
 import { useAuth } from "../composables/useAuth.js";
 
-const { user, logout } = useAuth();
+const { user, logout, deleteAccount } = useAuth();
 const mobileMenuOpen = ref(false);
+
+function confirmDeleteAccount() {
+	if (
+		window.confirm(
+			"Voulez-vous vraiment supprimer votre compte ? Cette action est irr\u00e9versible.",
+		)
+	) {
+		deleteAccount();
+	}
+}
 </script>
 
 <template>
@@ -11,7 +21,7 @@ const mobileMenuOpen = ref(false);
 		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 			<div class="flex h-16 items-center justify-between">
 				<div class="flex items-center gap-8">
-					<span class="text-xl font-bold text-punch">Challenge Strava</span>
+					<span class="text-xl font-bold text-punch">Le Challenge</span>
 					<div class="hidden gap-4 md:flex">
 						<router-link
 							to="/dashboard"
@@ -48,6 +58,12 @@ const mobileMenuOpen = ref(false);
 							{{ user.firstname }} {{ user.lastname }}
 						</span>
 					</div>
+					<button
+						@click="confirmDeleteAccount"
+						class="hidden rounded bg-dark-elevated px-3 py-1.5 text-sm text-red-400 hover:bg-red-500/20 hover:text-red-300 md:block"
+					>
+						Supprimer mon compte
+					</button>
 					<button
 						@click="logout"
 						class="hidden rounded bg-dark-elevated px-3 py-1.5 text-sm text-concrete hover:bg-dark-border hover:text-offwhite md:block"
@@ -99,6 +115,12 @@ const mobileMenuOpen = ref(false);
 					class="mt-2 w-full rounded bg-dark-elevated px-3 py-2 text-left text-sm text-concrete hover:bg-dark-border hover:text-offwhite"
 				>
 					Déconnexion
+				</button>
+				<button
+					@click="confirmDeleteAccount"
+					class="w-full rounded bg-dark-elevated px-3 py-2 text-left text-sm text-red-400 hover:bg-red-500/20 hover:text-red-300"
+				>
+					Supprimer mon compte
 				</button>
 			</div>
 		</div>
