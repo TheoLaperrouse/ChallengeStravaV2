@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/TheoLaperrouse/SportChallenge/compare/v1.3.0...v1.4.0) (2026-02-18)
+
+
+### Features
+
+* sync every 15 minutes + improve some widgets ([451db53](https://github.com/TheoLaperrouse/SportChallenge/commit/451db5318baf07273e0acfcfbf3d30da238dfaef))
+
 # [1.3.0](https://github.com/TheoLaperrouse/SportChallenge/compare/v1.2.0...v1.3.0) (2026-02-18)
 
 
