@@ -151,12 +151,12 @@ async function syncAllUsers(): Promise<void> {
 }
 
 export function startScheduler(): void {
-	// Run every hour at minute 0
-	cron.schedule("0 * * * *", () => {
+	// Run every 15 minutes
+	cron.schedule("*/15 * * * *", () => {
 		syncAllUsers().catch((error) => {
 			console.error("[Scheduler] Unhandled error in sync job:", error);
 		});
 	});
 
-	console.log("[Scheduler] Hourly sync scheduler started");
+	console.log("[Scheduler] Sync scheduler started (every 15 minutes)");
 }

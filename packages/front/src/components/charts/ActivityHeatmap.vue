@@ -19,7 +19,7 @@ const heatmapData = computed(() => {
 	today.setHours(0, 0, 0, 0);
 
 	const startDate = new Date(today);
-	startDate.setFullYear(startDate.getFullYear() - 1);
+	startDate.setMonth(startDate.getMonth() - 4);
 
 	const dailyCounts = new Map<string, number>();
 	for (const a of props.activities) {
@@ -99,7 +99,7 @@ const monthLabels = computed(() => {
 
 <template>
 	<div class="rounded-lg border border-dark-border bg-dark-card p-4 sm:p-6">
-		<h3 class="mb-4 text-sm font-medium text-offwhite">Activité des 12 derniers mois</h3>
+		<h3 class="mb-4 text-sm font-medium text-offwhite">Activité des 4 derniers mois</h3>
 		<div class="overflow-x-auto">
 			<div class="inline-flex flex-col gap-1">
 				<!-- Month labels -->

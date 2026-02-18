@@ -40,15 +40,19 @@ const records = computed<PersonalRecord[]>(() => {
 		(a.totalElevationGain ?? 0) > (max.totalElevationGain ?? 0) ? a : max,
 	);
 
-	const fastestSpeed = props.activities.reduce((max, a) =>
-		(a.maxSpeed ?? 0) > (max.maxSpeed ?? 0) ? a : max,
-	);
+	const activitiesOver10min = props.activities.filter((a) => (a.movingTime ?? 0) >= 600);
+	const fastestSpeed =
+		activitiesOver10min.length > 0
+			? activitiesOver10min.reduce((max, a) =>
+					(a.averageSpeed ?? 0) > (max.averageSpeed ?? 0) ? a : max,
+				)
+			: null;
 
 	const longestTime = props.activities.reduce((max, a) =>
 		(a.movingTime ?? 0) > (max.movingTime ?? 0) ? a : max,
 	);
 
-	return [
+	const result: PersonalRecord[] = [
 		{
 			label: "Plus longue distance",
 			value: `${((longestDistance.distance ?? 0) / 1000).toFixed(2)} km`,
@@ -61,19 +65,25 @@ const records = computed<PersonalRecord[]>(() => {
 			activityName: mostElevation.name,
 			date: formatDate(mostElevation.startDate),
 		},
-		{
-			label: "Vitesse max",
-			value: `${((fastestSpeed.maxSpeed ?? 0) * 3.6).toFixed(1)} km/h`,
+	];
+
+	if (fastestSpeed) {
+		result.push({
+			label: "Vitesse max (10 min+)",
+			value: `${((fastestSpeed.averageSpeed ?? 0) * 3.6).toFixed(1)} km/h`,
 			activityName: fastestSpeed.name,
 			date: formatDate(fastestSpeed.startDate),
-		},
-		{
-			label: "Plus longue durée",
-			value: formatDuration(longestTime.movingTime),
-			activityName: longestTime.name,
-			date: formatDate(longestTime.startDate),
-		},
-	];
+		});
+	}
+
+	result.push({
+		label: "Plus longue durée",
+		value: formatDuration(longestTime.movingTime),
+		activityName: longestTime.name,
+		date: formatDate(longestTime.startDate),
+	});
+
+	return result;
 });
 </script>
 
