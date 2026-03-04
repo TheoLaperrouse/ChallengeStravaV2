@@ -118,7 +118,7 @@ onMounted(() => {
 
 	L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
 		attribution:
-			'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+			'&copy; <a href="https://carto.com/">CARTO</a>',
 		maxZoom: 19,
 	}).addTo(map);
 
@@ -144,7 +144,7 @@ watch(selectedType, () => loadData());
 		<div class="relative overflow-hidden rounded-lg border border-dark-border">
 			<div
 				v-if="loading"
-				class="absolute inset-0 z-[1000] flex items-center justify-center bg-dark/80"
+				class="absolute inset-0 z-1000 flex items-center justify-center bg-dark/80"
 			>
 				<p class="text-sm text-ash">Chargement...</p>
 			</div>

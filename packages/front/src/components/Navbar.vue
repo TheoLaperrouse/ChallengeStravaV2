@@ -55,6 +55,12 @@ function confirmDeleteAccount() {
 							:alt="user.firstname ?? ''"
 							class="h-8 w-8 rounded-full ring-2 ring-punch"
 						/>
+						<div
+							v-else
+							class="flex h-8 w-8 items-center justify-center rounded-full bg-dark-elevated text-xs font-medium text-concrete ring-2 ring-punch"
+						>
+							{{ (user.firstname?.[0] ?? '') + (user.lastname?.[0] ?? '') }}
+						</div>
 						<span class="hidden text-sm text-offwhite sm:inline">
 							{{ user.firstname }} {{ user.lastname }}
 						</span>

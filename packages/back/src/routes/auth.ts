@@ -9,6 +9,16 @@ import { exchangeCode, getAuthUrl } from "../services/strava.js";
 
 export const authRoutes = new Hono<AuthEnv>();
 
+function toAvatarUrl(value: string | null | undefined): string | null {
+	if (!value) return null;
+	try {
+		const url = new URL(value);
+		return url.protocol === "http:" || url.protocol === "https:" ? value : null;
+	} catch {
+		return null;
+	}
+}
+
 authRoutes.get("/login", (c) => {
 	return c.redirect(getAuthUrl());
 });
@@ -42,7 +52,7 @@ authRoutes.get("/callback", async (c) => {
 					username: athlete.username,
 					firstname: athlete.firstname,
 					lastname: athlete.lastname,
-					avatarUrl: athlete.profile,
+					avatarUrl: toAvatarUrl(athlete.profile),
 					accessToken: tokenData.access_token,
 					refreshToken: tokenData.refresh_token,
 					tokenExpiresAt: new Date(tokenData.expires_at * 1000),
@@ -58,7 +68,7 @@ authRoutes.get("/callback", async (c) => {
 					username: athlete.username,
 					firstname: athlete.firstname,
 					lastname: athlete.lastname,
-					avatarUrl: athlete.profile,
+					avatarUrl: toAvatarUrl(athlete.profile),
 					accessToken: tokenData.access_token,
 					refreshToken: tokenData.refresh_token,
 					tokenExpiresAt: new Date(tokenData.expires_at * 1000),
