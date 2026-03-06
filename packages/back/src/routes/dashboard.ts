@@ -35,7 +35,7 @@ dashboardRoutes.get("/personal", async (c) => {
 			totalDistance: sum(activities.distance),
 			totalMovingTime: sum(activities.movingTime),
 			totalElevation: sum(activities.totalElevationGain),
-			avgSpeed: avg(activities.averageSpeed),
+			avgSpeed: sql<string>`sum(${activities.distance} * ${activities.averageSpeed}) / nullif(sum(${activities.distance}), 0)`,
 			avgHeartrate: avg(activities.averageHeartrate),
 			maxDistance: max(activities.distance),
 		})

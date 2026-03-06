@@ -36,14 +36,14 @@ function formatWeekLabel(isoDate: string): string {
 }
 
 const chartData = computed(() => {
-	const weekly: Record<string, { totalSpeed: number; count: number }> = {};
+	const weekly: Record<string, { totalDistance: number; totalTime: number }> = {};
 
 	for (const a of props.activities) {
-		if (!a.startDate || !a.averageSpeed) continue;
+		if (!a.startDate || !a.averageSpeed || !a.distance) continue;
 		const key = getWeekMonday(new Date(a.startDate));
-		if (!weekly[key]) weekly[key] = { totalSpeed: 0, count: 0 };
-		weekly[key].totalSpeed += a.averageSpeed;
-		weekly[key].count += 1;
+		if (!weekly[key]) weekly[key] = { totalDistance: 0, totalTime: 0 };
+		weekly[key].totalDistance += a.distance;
+		weekly[key].totalTime += a.distance / a.averageSpeed;
 	}
 
 	const sortedKeys = Object.keys(weekly).sort();
@@ -54,7 +54,7 @@ const chartData = computed(() => {
 			{
 				label: "Vitesse moyenne (km/h)",
 				data: sortedKeys.map((k) => {
-					const avg = weekly[k].totalSpeed / weekly[k].count;
+					const avg = weekly[k].totalDistance / weekly[k].totalTime;
 					return Math.round(avg * 3.6 * 10) / 10;
 				}),
 				borderColor: PUNCH,
